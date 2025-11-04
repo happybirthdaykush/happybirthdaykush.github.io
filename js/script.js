@@ -1,26 +1,24 @@
-// 🎁 Step 1: Intro gift click → reveal card
 const intro = document.getElementById('intro');
 const giftBox = document.querySelector('.gift-box');
 const card = document.getElementById('card');
 
 intro.addEventListener('click', () => {
-  // Animate the gift lid opening
+  // Start the elegant open animation
   giftBox.classList.add('open');
 
-  setTimeout(() => {
-    intro.style.animation = 'fadeOut 0.8s forwards';
-  }, 500);
+  // Balloons start rising immediately
+  launchBalloons();
+
+  // Fade out intro and show card
+  setTimeout(() => intro.style.animation = 'fadeOut 0.8s forwards', 800);
 
   setTimeout(() => {
     intro.classList.add('hidden');
     card.style.display = 'block';
     card.style.animation = 'popOpen 1s ease-out forwards';
-    launchBalloons();
-  }, 1300);
+  }, 1600);
 });
 
-
-// 🎈 Step 2: Floating balloons generator
 function createBalloon() {
   const balloon = document.createElement('div');
   balloon.classList.add('balloon');
@@ -35,5 +33,10 @@ function createBalloon() {
 }
 
 function launchBalloons() {
-  setInterval(createBalloon, 600);
+  let count = 0;
+  const interval = setInterval(() => {
+    createBalloon();
+    count++;
+    if (count > 25) clearInterval(interval);
+  }, 500);
 }

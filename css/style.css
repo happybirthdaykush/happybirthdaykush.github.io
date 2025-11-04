@@ -1,0 +1,266 @@
+body {
+  margin: 0;
+  font-family: 'Comic Sans MS', cursive;
+  background: linear-gradient(135deg, #ffd6eb, #fff0b3);
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ========== INTRO (gift phase) ========== */
+.intro {
+  text-align: center;
+  animation: fadeIn 1s ease-in;
+}
+/* ------------------ GIFT BOX ------------------ */
+.gift-box {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  margin: 0 auto;
+  cursor: pointer;
+  animation: bounce 1.8s infinite ease-in-out;
+  perspective: 800px;
+  transform-style: preserve-3d;
+}
+
+/* Bottom Box */
+.box {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 75%;
+  background: linear-gradient(to bottom, #ff8fa3, #ff5c8a);
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  border-top: 4px solid #ffe6f0;
+  overflow: hidden;
+}
+
+/* Lid */
+.lid {
+  position: absolute;
+  top: 0;
+  left: -5%;
+  width: 110%;
+  height: 35%;
+  background: linear-gradient(to bottom, #ffb3c6, #ff8fa3);
+  border-radius: 10px 10px 4px 4px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transform-origin: bottom center;
+  transition: transform 0.6s ease-out;
+  z-index: 2;
+}
+
+/* Ribbons */
+.ribbon-vertical {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 18px;
+  height: 100%;
+  background: #fff0f6;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.ribbon-horizontal {
+  position: absolute;
+  top: 45%;
+  left: 0;
+  width: 100%;
+  height: 18px;
+  background: #fff0f6;
+  z-index: 1;
+}
+
+/* Add a cute bow */
+.bow {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+
+.bow::before, .bow::after {
+  content: '';
+  width: 25px;
+  height: 25px;
+  background: #fff0f6;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.bow::before {
+  left: -22px;
+  transform: rotate(45deg);
+}
+
+.bow::after {
+  right: -22px;
+  transform: rotate(-45deg);
+}
+
+/* Lid open animation when clicked */
+.open .lid {
+  transform: rotateX(130deg);
+}
+
+/* Bounce effect */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+/* Subtle glow to make it lively */
+.gift-box:hover {
+  filter: drop-shadow(0 0 12px rgba(255, 192, 203, 0.8));
+  transform: scale(1.03);
+  transition: all 0.3s ease;
+}
+
+.open .lid {
+  transform: rotateX(130deg);
+  transition: transform 0.8s cubic-bezier(0.45, 1.45, 0.45, 1);
+}
+
+/* Bounce effect */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.intro h2 {
+  color: #ff69b4;
+  margin-top: 20px;
+  font-size: 1.3em;
+}
+
+/* ========== CARD ========== */
+.card {
+  width: 80%;
+  max-width: 800px;
+  height: 450px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  overflow: hidden;
+  display: none;
+  transform: scale(0.8);
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.card-content {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+/* Left: Photos */
+.left-side {
+  flex: 1;
+  background: #fff0f6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+}
+
+.left-side img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 15px;
+  border: 5px solid white;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.left-side img:hover {
+  transform: scale(1.05);
+}
+
+/* Right: Message */
+.right-side {
+  flex: 1;
+  background: #fffaf0;
+  padding: 30px;
+  text-align: left;
+}
+
+.right-side h1 {
+  color: #ff69b4;
+  font-size: 2em;
+}
+
+.right-side p {
+  color: #555;
+  font-size: 1.1em;
+  line-height: 1.5;
+}
+
+.from {
+  margin-top: 20px;
+  font-style: italic;
+  text-align: right;
+  color: #777;
+}
+
+/* ===== Animations ===== */
+@keyframes popOpen {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; } to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; } to { opacity: 0; }
+}
+
+/* Balloons */
+.balloon {
+  position: absolute;
+  width: 40px;
+  height: 60px;
+  background: pink;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(100vh); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+/* Footer */
+footer {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  color: #666;
+  font-size: 0.9em;
+}
+
+/* Hidden state */
+.hidden { display: none; }

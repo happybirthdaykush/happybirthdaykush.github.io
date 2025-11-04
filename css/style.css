@@ -135,26 +135,26 @@ body {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 }
-
 /* CARD */
 .card {
-  width: 80%;
-  max-width: 800px;
-  height: 450px;
+  width: 90%;         /* increase from 80% to 90% */
+  max-width: 900px;   /* increase from 800px */
   background: white;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  overflow: hidden;
+  overflow: auto;
   display: none;
   transform: scale(0.8);
   opacity: 0;
   animation-fill-mode: forwards;
+  padding: 10px 0;
+  max-height: 90vh;
 }
 
 .card-content {
   display: flex;
   width: 100%;
-  height: 100%;
+  flex-wrap: wrap; /* allow left/right sides to wrap on smaller screens */
 }
 
 .left-side {
@@ -166,11 +166,12 @@ body {
   align-items: center;
   gap: 15px;
   padding: 20px;
+  min-width: 180px; /* prevent shrinking too much */
 }
 
 .left-side img {
-  width: 180px;
-  height: 180px;
+  width: 260px;
+  height: 260px;
   object-fit: cover;
   border-radius: 15px;
   border: 5px solid white;
@@ -185,18 +186,25 @@ body {
   background: #fffaf0;
   padding: 30px;
   text-align: left;
+  min-width: 200px; /* prevent shrinking too much */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .right-side h1 {
   color: #ff69b4;
   font-size: 2em;
   animation: fadeIn 1.5s ease-out forwards;
+  word-wrap: break-word;
 }
 
 .right-side p {
   color: #555;
   font-size: 1.1em;
   line-height: 1.5;
+  word-wrap: break-word;      /* long words break correctly */
+  overflow-wrap: break-word;  /* fallback */
+  margin-bottom: 10px;
 }
 
 .from {
@@ -248,13 +256,21 @@ footer {
 /* Utility */
 .hidden { display: none; }
 
+@media (min-width: 700px) {
+  .card { padding: 20px 30px; }
+}
+
 /* Responsive */
 @media (max-width: 600px) {
-  .card { height: auto; }
-  .card-content { flex-direction: column; }
-  .left-side img {
-    width: 140px;
-    height: 140px;
+  .card {
+    width: 95%;
+    max-width: 95%;
+    height: auto;
+    padding: 15px 10px;
+    max-height: 95vh;
   }
+  .card-content { flex-direction: column; height: auto; }
+  .left-side img { width: 140px; height: 140px; }
   .right-side h1 { font-size: 1.6em; }
+  .right-side { padding: 15px; }
 }
